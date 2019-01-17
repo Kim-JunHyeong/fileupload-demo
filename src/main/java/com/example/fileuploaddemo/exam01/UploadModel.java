@@ -4,23 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
+@Getter
+@Setter
 public class UploadModel {
     private String description;
-    private MultipartFile[] files;
+
+    private Long category;
+
+    private List<MultipartFile> files;
 
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public MultipartFile[] getFiles() {
-        return files;
-    }
-
-    public void setFiles(MultipartFile[] files) {
-        this.files = files;
     }
 }

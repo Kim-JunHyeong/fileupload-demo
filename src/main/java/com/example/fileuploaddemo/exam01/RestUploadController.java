@@ -12,23 +12,22 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @RestController
 public class RestUploadController {
     // Linux: /home/{user}/test
-    // Windows: C:/Users/{user}/test
     private static String UPLOAD_DIR = System.getProperty("user.home") + "/test";
 
     @PostMapping("/rest/uploadMultiFiles")
     public ResponseEntity<?> multiUploadFileModel(@ModelAttribute UploadModel form) {
 
         System.out.println("Description:" + form.getDescription());
+        System.out.println("Category:" + form.getCategory());
 
         String result = null;
         try {
-
             result = this.saveUploadedFiles(form.getFiles());
-
         }
         // Here Catch IOException only.
         // Other Exceptions catch by RestGlobalExceptionHandler class.
@@ -36,13 +35,11 @@ public class RestUploadController {
             e.printStackTrace();
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-
         return new ResponseEntity<String>("Uploaded to: <br/>" + result, HttpStatus.OK);
-
     }
 
     // Save Files
-    private String saveUploadedFiles(MultipartFile[] files) throws IOException {
+    private String saveUploadedFiles(List<MultipartFile> files) throws IOException {
 
         // Make sure directory exists!
         File uploadDir = new File(UPLOAD_DIR);
