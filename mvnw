@@ -2,7 +2,7 @@
 # ----------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
-# distributed with this work for additional information
+# distributed with this wo for additional information
 # regarding copyright ownership.  The ASF licenses this file
 # to you under the Apache License, Version 2.0 (the
 # "License"); you may not use this file except in compliance
@@ -162,7 +162,7 @@ fi
 
 CLASSWORLDS_LAUNCHER=org.codehaus.plexus.classworlds.launcher.Launcher
 
-# traverses directory structure from process work directory to filesystem root
+# traverses directory structure from process wo directory to filesystem root
 # first directory with .mvn subdirectory is considered project base directory
 find_maven_basedir() {
 
@@ -179,11 +179,11 @@ find_maven_basedir() {
       basedir=$wdir
       break
     fi
-    # workaround for JBEAP-8937 (on Solaris 10/Sparc)
+    # woaround for JBEAP-8937 (on Solaris 10/Sparc)
     if [ -d "${wdir}" ]; then
       wdir=`cd "$wdir/.."; pwd`
     fi
-    # end of workaround
+    # end of woaround
   done
   echo "${basedir}"
 }

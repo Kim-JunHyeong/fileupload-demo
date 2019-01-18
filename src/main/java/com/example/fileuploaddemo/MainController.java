@@ -56,18 +56,34 @@ public class MainController {
         }
     }
 
+    // 여러 파일을 구분해서 받기
     @PostMapping("/MultiUploadExam02")
-    public String upload(MultipartFile[] uploadfiles, Model model){
+    public String upload(MultipartFile[] myfile1,
+            MultipartFile[] myfile2, Model model){
+
+        System.out.println("=====length======");
+        System.out.println("myfile1: "+ myfile1.length);
+        System.out.println("myfile2: "+ myfile2.length);
+        System.out.println("================");
 
         UploadModel uploadModel;
 
         String result = "";
-        for(MultipartFile f : uploadfiles){
-            result += saveFile(f);
-        }
+        result = getString(myfile1, result);
+        result = getString(myfile2, result);
         model.addAttribute("result",result);
 
         return "redirect:/exam02";
+    }
+
+    private String getString(MultipartFile[] myfile, String result) {
+        for(MultipartFile f : myfile){
+            System.out.println("=====getName=====");
+            System.out.println(f.getName());
+            System.out.println("=================");
+            result += saveFile(f);
+        }
+        return result;
     }
 
     private String saveFile(MultipartFile file) {
